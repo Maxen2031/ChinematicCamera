@@ -31,8 +31,8 @@ local function cinematicCamera(basePart)
 
 	local startPositions = {
 		CFrame.new (
-			basePart.Position + (lookVector * 15) + (rightVector * 2.5) + ,
-			basePart.Position + (rightVector * 2.5)
+			position + (lookVector * 15) + (rightVector * 2.5) + (upVector * 1),
+			position + (rightVector * 2.5)
 		);
 		--CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5) + Vector3.new(3, 2, 0), basePart.Position);
 		--CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5), basePart.Position - (basePart.CFrame.RightVector * -2.5));
