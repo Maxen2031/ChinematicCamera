@@ -12,7 +12,7 @@ local part = Workspace:WaitForChild("Part")
 local count = 1
 
 local function tween(goal)
-	local info = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0)
+	local info = TweenInfo.new(6, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0)
 	local goals = {CFrame = goal}
 
 	local tweenObject = TweenService:Create(camera, info, goals)
@@ -30,18 +30,33 @@ local function cinematicCamera(basePart)
 	local upVector = basePart.CFrame.UpVector
 
 	local startPositions = {
+		-- CFrame.new (
+		-- 	position + (lookVector * 15) + (rightVector * 2.5) + (upVector * 5),
+		-- 	position + (rightVector * 2.5)
+		-- );
+		-- CFrame.new (
+		-- 	position + (lookVector * 15) - (Vector3.new(((basePart.Size.X/2) * 2), 0, 0)) + (upVector * 5),
+		-- 	basePart.Position
+		-- );
 		CFrame.new (
-			position + (lookVector * 15) + (rightVector * 2.5) + (upVector * 1),
-			position + (rightVector * 2.5)
+			position + (lookVector * 5),
+			basePart.Position
 		);
-		--CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5) + Vector3.new(3, 2, 0), basePart.Position);
-		--CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5), basePart.Position - (basePart.CFrame.RightVector * -2.5));
 	}
 	
 	local goals = {
+		-- CFrame.new (
+		-- 	position + (lookVector * 15) - (rightVector * 2.5) + (upVector * 5),
+		-- 	position - (rightVector * 2.5)
+		-- );
+
+		-- CFrame.new (
+		-- 	position + (lookVector * -15) - (Vector3.new(((basePart.Size.X/2) * 2), 0, 0)) + (upVector * 5),
+		-- 	basePart.Position
+		-- );
 		CFrame.new (
-			position + (lookVector * 15) - (rightVector * 2.5) + (upVector * 1),
-			position - (rightVector * 2.5)
+			position + (lookVector * 18) + (upVector * 8),
+			basePart.Position
 		);
 	}
 	
@@ -50,14 +65,15 @@ local function cinematicCamera(basePart)
 		camera.CFrame = c
 		local t = tween(goals[count])
 		t.Completed:Wait()
+
 		count += 1
-		
-		count = if (count >= #startPositions) then 1 else count
+
+		count = if (count > #startPositions) then 1 else count
 
 		-- Fade dispaly dark and wait for fade completition. Use Utility module to implement fade feature
 	end
 end
 
-task.wait(5)
+task.wait(3)
 
 cinematicCamera(part)
