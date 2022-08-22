@@ -14,19 +14,24 @@ local count = 1
 local function tween(goal)
 	local info = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.Out, 0, false, 0)
 	local goals = {CFrame = goal}
+
+	local tweenObject = TweenService:Create(camera, info, goals)
+	tweenObject:Play()
+
+	return tweenObject
 end
 
 local function cinematicCamera(basePart)
 	camera.CameraType = Enum.CameraType.Scriptable
 
 	local startPositions = {
-		CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5) - (basePart.CFrame.RightVector * 2.5), basePart.Position - (basePart.CFrame.RightVector * 2.5));
-		CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5) + Vector3.new(3, 2, 0), basePart.Position);
-		CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5), basePart.Position - (basePart.CFrame.RightVector * -2.5));
+		CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 15) + (basePart.CFrame.RightVector * 2.5), basePart.Position + (basePart.CFrame.RightVector * 2.5));
+		--CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5) + Vector3.new(3, 2, 0), basePart.Position);
+		--CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5), basePart.Position - (basePart.CFrame.RightVector * -2.5));
 	}
 	
 	local goals = {
-		CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5) + (basePart.CFrame.RightVector * 2.5), basePart.Position + (basePart.CFrame.RightVector * 2.5));
+		CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 15) - (basePart.CFrame.RightVector * 2.5), basePart.Position - (basePart.CFrame.RightVector * 2.5));
 	}
 	
 	while (true) do
@@ -37,8 +42,11 @@ local function cinematicCamera(basePart)
 		count += 1
 		
 		count = if (count >= #startPositions) then 1 else count
-		break
+
+		-- Fade dispaly dark and wait for fade completition. Use Utility module to implement fade feature
 	end
 end
+
+task.wait(5)
 
 cinematicCamera(part)
