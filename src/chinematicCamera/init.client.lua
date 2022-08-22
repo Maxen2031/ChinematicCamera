@@ -30,32 +30,32 @@ local function cinematicCamera(basePart)
 	local upVector = basePart.CFrame.UpVector
 
 	local startPositions = {
-		-- CFrame.new (
-		-- 	position + (lookVector * 15) + (rightVector * 2.5) + (upVector * 5),
-		-- 	position + (rightVector * 2.5)
-		-- );
-		-- CFrame.new (
-		-- 	position + (lookVector * 15) - (Vector3.new(((basePart.Size.X/2) * 2), 0, 0)) + (upVector * 5),
-		-- 	basePart.Position
-		-- );
 		CFrame.new (
-			position + (lookVector * 5),
+			position + (lookVector * 15) + (rightVector * 2.5) + (upVector * 5),
+			position + (rightVector * 2.5)
+		);
+		CFrame.new (
+			position + (lookVector * 15) - (Vector3.new(((basePart.Size.X/2) * 2), 0, 0)) + (upVector * 5),
+			basePart.Position
+		);
+		CFrame.new (
+			position + (lookVector * 10),
 			basePart.Position
 		);
 	}
 	
 	local goals = {
-		-- CFrame.new (
-		-- 	position + (lookVector * 15) - (rightVector * 2.5) + (upVector * 5),
-		-- 	position - (rightVector * 2.5)
-		-- );
-
-		-- CFrame.new (
-		-- 	position + (lookVector * -15) - (Vector3.new(((basePart.Size.X/2) * 2), 0, 0)) + (upVector * 5),
-		-- 	basePart.Position
-		-- );
 		CFrame.new (
-			position + (lookVector * 18) + (upVector * 8),
+			position + (lookVector * 15) - (rightVector * 2.5) + (upVector * 5),
+			position - (rightVector * 2.5)
+		);
+
+		CFrame.new (
+			position + (lookVector * -15) - (Vector3.new(((basePart.Size.X/2) * 2), 0, 0)) + (upVector * 5),
+			basePart.Position
+		);
+		CFrame.new (
+			position + (lookVector * 28) + (upVector * 8),
 			basePart.Position
 		);
 	}
