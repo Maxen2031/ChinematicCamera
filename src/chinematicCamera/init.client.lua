@@ -24,14 +24,25 @@ end
 local function cinematicCamera(basePart)
 	camera.CameraType = Enum.CameraType.Scriptable
 
+	local position = basePart.Position
+	local lookVector = basePart.CFrame.LookVector
+	local rightVector = basePart.CFrame.RightVector
+	local upVector = basePart.CFrame.UpVector
+
 	local startPositions = {
-		CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 15) + (basePart.CFrame.RightVector * 2.5), basePart.Position + (basePart.CFrame.RightVector * 2.5));
+		CFrame.new (
+			basePart.Position + (lookVector * 15) + (rightVector * 2.5) + ,
+			basePart.Position + (rightVector * 2.5)
+		);
 		--CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5) + Vector3.new(3, 2, 0), basePart.Position);
 		--CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 5), basePart.Position - (basePart.CFrame.RightVector * -2.5));
 	}
 	
 	local goals = {
-		CFrame.new(basePart.Position + (basePart.CFrame.LookVector * 15) - (basePart.CFrame.RightVector * 2.5), basePart.Position - (basePart.CFrame.RightVector * 2.5));
+		CFrame.new (
+			position + (lookVector * 15) - (rightVector * 2.5) + (upVector * 1),
+			position - (rightVector * 2.5)
+		);
 	}
 	
 	while (true) do
